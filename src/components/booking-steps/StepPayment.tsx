@@ -166,11 +166,11 @@ export default function StepPayment({ bookingData, onConfirm }: StepPaymentProps
       </div>
 
       {/* ── Final CTA ─────────────────────────────────── */}
-      <div className="pt-8 mt-auto">
+      <div className="pt-4 mt-auto">
         <button
           type="button"
           onClick={onConfirm}
-          className="w-full bg-[#90de7f] text-[#1c2d18] text-[18px] sm:text-[20px] font-bold tracking-[-0.03em] rounded-full py-5 text-center transition-colors duration-200 hover:bg-[#7bc86a] active:scale-[0.97] shadow-[0_4px_20px_0_rgba(144,222,127,0.3)] flex items-center justify-center gap-2"
+          className="w-full bg-[#90de7f] text-[#1c2d18] text-[16px] sm:text-[18px] font-bold tracking-[-0.03em] rounded-full py-4 text-center transition-colors duration-200 hover:bg-[#7bc86a] active:scale-[0.97] shadow-[0_4px_20px_0_rgba(144,222,127,0.3)] flex items-center justify-center gap-2"
         >
           <span>Hold & Pay ₹{displayTotal.toFixed(2)}</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

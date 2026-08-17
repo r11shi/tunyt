@@ -43,49 +43,49 @@ export default function StepTicket({ bookingData, onClose }: StepTicketProps) {
   }, []);
 
   return (
-    <div className="flex flex-col h-full items-center py-6">
-      <div className="w-16 h-16 rounded-full bg-[#90de7f] flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(144,222,127,0.3)]">
-        <Check className="w-8 h-8 text-[#1c2d18]" strokeWidth={3} />
+    <div className="flex flex-col h-full items-center py-2 sm:py-4">
+      <div className="w-12 h-12 rounded-full bg-[#90de7f] flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(144,222,127,0.3)]">
+        <Check className="w-6 h-6 text-[#1c2d18]" strokeWidth={3} />
       </div>
       
-      <h2 className="text-[28px] font-medium tracking-[-0.04em] text-white mb-2 text-center">
+      <h2 className="text-[22px] font-medium tracking-[-0.03em] text-white mb-2 text-center">
         Booking Confirmed!
       </h2>
-      <p className="text-[15px] text-[rgba(255,255,255,0.5)] tracking-[-0.02em] mb-8 text-center max-w-[280px]">
+      <p className="text-[14px] text-[rgba(255,255,255,0.5)] tracking-[-0.01em] mb-6 text-center max-w-[260px] leading-[1.3]">
         Your table has been reserved successfully. Show this ticket at the venue.
       </p>
 
       {/* ── Ticket Card ───────────────────────────────── */}
-      <div className="w-full max-w-[340px] bg-white rounded-[24px] overflow-hidden text-black relative">
+      <div className="w-full max-w-[340px] bg-white rounded-[20px] overflow-hidden text-black relative">
         {/* Top Section */}
-        <div className="p-6 pb-8 bg-[#f8f8f8]">
-          <div className="flex justify-between items-start mb-6">
+        <div className="p-5 pb-5 bg-[#f8f8f8]">
+          <div className="flex justify-between items-start mb-5">
             <div>
-              <p className="text-[12px] uppercase font-bold text-[#666] tracking-[0.05em] mb-1">Venue</p>
-              <h3 className="text-[22px] font-bold tracking-[-0.03em] leading-tight">Nine Ball Cafe</h3>
-              <p className="text-[14px] font-medium text-[#444] tracking-[-0.01em]">Saharanpur, UP</p>
+              <p className="text-[11px] uppercase font-medium text-[#666] tracking-[0.05em] mb-0.5">Venue</p>
+              <h3 className="text-[18px] font-medium tracking-[-0.02em] leading-tight mb-0.5">Nine Ball Cafe</h3>
+              <p className="text-[13px] font-medium text-[#444] tracking-[-0.01em]">Saharanpur, UP</p>
             </div>
-            <div className="w-12 h-12 rounded-full bg-black flex items-center justify-center shrink-0">
-              <span className="text-white font-bold text-[18px]">1</span>
+            <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center shrink-0">
+              <span className="text-white font-medium text-[16px]">1</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-y-5 gap-x-4">
+          <div className="grid grid-cols-2 gap-y-4 gap-x-3">
             <div>
-              <p className="text-[11px] uppercase font-bold text-[#888] tracking-[0.05em] mb-1">Date</p>
-              <p className="text-[15px] font-bold tracking-[-0.02em]">{bookingData.date}</p>
+              <p className="text-[10px] uppercase font-medium text-[#888] tracking-[0.05em] mb-0.5">Date</p>
+              <p className="text-[14px] font-medium tracking-[-0.02em]">{bookingData.date}</p>
             </div>
             <div>
-              <p className="text-[11px] uppercase font-bold text-[#888] tracking-[0.05em] mb-1">Time</p>
-              <p className="text-[15px] font-bold tracking-[-0.02em]">{bookingData.slot}</p>
+              <p className="text-[10px] uppercase font-medium text-[#888] tracking-[0.05em] mb-0.5">Time</p>
+              <p className="text-[14px] font-medium tracking-[-0.02em]">{bookingData.slot}</p>
             </div>
             <div>
-              <p className="text-[11px] uppercase font-bold text-[#888] tracking-[0.05em] mb-1">Duration</p>
-              <p className="text-[15px] font-bold tracking-[-0.02em]">{bookingData.duration} Mins</p>
+              <p className="text-[10px] uppercase font-medium text-[#888] tracking-[0.05em] mb-0.5">Duration</p>
+              <p className="text-[14px] font-medium tracking-[-0.02em]">{bookingData.duration} Mins</p>
             </div>
             <div>
-              <p className="text-[11px] uppercase font-bold text-[#888] tracking-[0.05em] mb-1">Players</p>
-              <p className="text-[15px] font-bold tracking-[-0.02em]">{bookingData.players}</p>
+              <p className="text-[10px] uppercase font-medium text-[#888] tracking-[0.05em] mb-0.5">Players</p>
+              <p className="text-[14px] font-medium tracking-[-0.02em]">{bookingData.players}</p>
             </div>
           </div>
         </div>
@@ -98,8 +98,8 @@ export default function StepTicket({ bookingData, onClose }: StepTicketProps) {
         </div>
 
         {/* Bottom Section - Barcode & Price */}
-        <div className="p-6 bg-white flex flex-col">
-          <div className="flex flex-col gap-2 mb-6">
+        <div className="p-5 bg-white flex flex-col">
+          <div className="flex flex-col gap-2 mb-5">
             <div className="flex justify-between items-center text-[#666] text-[13px] font-medium tracking-[-0.01em]">
               <span>Slot Cost</span>
               <span>₹{((bookingData.price || 500) * (bookingData.players || 1)).toFixed(2)}</span>
@@ -109,14 +109,14 @@ export default function StepTicket({ bookingData, onClose }: StepTicketProps) {
               <span>₹38.46</span>
             </div>
             <div className="h-px bg-[#eee] my-1" />
-            <div className="flex justify-between items-center text-black text-[16px] font-bold tracking-[-0.02em]">
+            <div className="flex justify-between items-center text-black text-[15px] font-medium tracking-[-0.02em]">
               <span>Total Paid</span>
               <span>₹{(((bookingData.price || 500) * (bookingData.players || 1)) + 38.46).toFixed(2)}</span>
             </div>
           </div>
 
           <div className="flex flex-col items-center">
-            <p className="text-[11px] uppercase font-bold text-[#888] tracking-[0.05em] mb-3">Booking ID: NINE-8X29F</p>
+            <p className="text-[10px] uppercase font-medium text-[#888] tracking-[0.05em] mb-2">Booking ID: NINE-8X29F</p>
           <svg className="w-full h-[60px]" preserveAspectRatio="none" viewBox="0 0 200 60">
             <rect x="10" y="0" width="4" height="60" fill="black"/>
             <rect x="18" y="0" width="8" height="60" fill="black"/>
@@ -142,11 +142,11 @@ export default function StepTicket({ bookingData, onClose }: StepTicketProps) {
       </div>
       </div>
 
-      <div className="w-full mt-10">
+      <div className="w-full mt-auto pt-4 pb-2">
         <button
           type="button"
           onClick={onClose}
-          className="w-full bg-[rgba(255,255,255,0.08)] text-white text-[18px] font-semibold tracking-[-0.02em] rounded-full py-5 text-center transition-colors duration-200 hover:bg-[rgba(255,255,255,0.12)] active:scale-[0.97]"
+          className="w-full bg-[rgba(255,255,255,0.08)] text-white text-[15px] font-medium tracking-[-0.02em] rounded-full py-3.5 text-center transition-colors duration-200 hover:bg-[rgba(255,255,255,0.12)] active:scale-[0.97]"
         >
           Close
         </button>
