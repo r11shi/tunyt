@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ChevronRight } from "lucide-react";
 
 export default function VenueLocation() {
   return (
@@ -19,7 +20,7 @@ export default function VenueLocation() {
       </div>
 
       <div className="shrink-0 w-9 h-9 flex items-center justify-center rounded-full bg-[rgba(255,255,255,0.05)] group-hover:bg-[rgba(255,255,255,0.1)] transition-colors duration-100">
-        <Image src="/assets/icon-chevron.svg" alt="View on map" width={14} height={14} className="-rotate-90 opacity-60 w-auto h-auto" />
+        <ChevronRight className="w-4 h-4 text-white/60" />
       </div>
     </div>
   );

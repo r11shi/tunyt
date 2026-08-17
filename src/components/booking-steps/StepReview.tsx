@@ -14,7 +14,8 @@ export default function StepReview({ bookingData, onContinue }: StepReviewProps)
   const [discountCode, setDiscountCode] = useState("");
   const [discountApplied, setDiscountApplied] = useState(false);
 
-  const slotCost = bookingData.price || 500;
+  const playersCount = bookingData.players || 1;
+  const slotCost = (bookingData.price || 500) * playersCount;
   const platformFee = 38.46;
   const total = slotCost + platformFee;
 
@@ -69,6 +70,19 @@ export default function StepReview({ bookingData, onContinue }: StepReviewProps)
               <p className="text-[14px] text-white font-medium tracking-[-0.02em]">{bookingData.players} {bookingData.players === 1 ? 'Player' : 'Players'}</p>
             </div>
           </div>
+          
+          {bookingData.playersDetails && bookingData.playersDetails.length > 0 && (
+            <div className="mt-4 pt-4 border-t border-[rgba(255,255,255,0.06)]">
+              <p className="text-[12px] text-[rgba(255,255,255,0.4)] uppercase tracking-[0.05em] font-semibold mb-2">Player Details</p>
+              <div className="flex flex-wrap gap-2">
+                {bookingData.playersDetails.map((player, idx) => (
+                  <div key={idx} className="bg-[rgba(255,255,255,0.05)] px-3 py-1.5 rounded-[10px] text-[13px] text-[rgba(255,255,255,0.8)] font-medium">
+                    {player.name || `Player ${idx + 1}`}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

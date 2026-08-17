@@ -26,9 +26,7 @@ export interface BookingData {
   players: number;
   discountCode?: string;
   paymentMethod: "online" | "venue";
-  name?: string;
-  email?: string;
-  phone?: string;
+  playersDetails?: { name: string; email: string; phone: string }[];
 }
 
 /* ─── Apple-style ease: fast out, no bounce ─────────────── */
@@ -130,8 +128,13 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
   const handleStep2Continue = useCallback((data: Partial<BookingData>) => {
     setBookingData((prev) => ({ ...prev, ...data }));
-    goToStep(3);
-  }, [goToStep]);
+    const newPlayersCount = data.players ?? bookingData.players;
+    if (newPlayersCount === 1) {
+      goToStep(4); // Skip Details step
+    } else {
+      goToStep(3);
+    }
+  }, [bookingData.players, goToStep]);
   
   const handleStep3Continue = useCallback((data: Partial<BookingData>) => {
     setBookingData((prev) => ({ ...prev, ...data }));
@@ -148,12 +151,14 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
   }, [goToStep]);
 
   const handleBack = useCallback(() => {
-    if (step > 1 && step < 6) {
+    if (step === 4 && bookingData.players === 1) {
+      goToStep(2);
+    } else if (step > 1 && step < 6) {
       goToStep((step - 1) as 1 | 2 | 3 | 4 | 5 | 6);
     } else {
       onClose();
     }
-  }, [step, goToStep, onClose]);
+  }, [step, bookingData.players, goToStep, onClose]);
   
   const stepVariants: Variants = {
     initial: (dir: number) => ({
@@ -175,7 +180,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
   const steps = [
     { num: 1, label: "Date & Slot" },
     { num: 2, label: "Players" },
-    { num: 3, label: "Details" },
+    ...(bookingData.players > 1 ? [{ num: 3, label: "Details" }] : []),
     { num: 4, label: "Review" },
     { num: 5, label: "Payment" }
   ];
@@ -204,12 +209,26 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "100%" }}
             transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-            className="relative z-10 w-full sm:w-[calc(100%-24px)] sm:max-w-[480px] h-fit max-h-[90vh] bg-[#0d0d0d] rounded-t-[32px] sm:rounded-[32px] border-t sm:border border-[rgba(255,255,255,0.08)] overflow-hidden flex flex-col"
+            className="relative z-10 w-full sm:w-[calc(100%-24px)] sm:max-w-[560px] h-fit max-h-[90vh] bg-[#0d0d0d] rounded-t-[32px] sm:rounded-[32px] border-t sm:border border-[rgba(255,255,255,0.08)] overflow-hidden flex flex-col"
             style={{ boxShadow: "0 -8px 40px rgba(0,0,0,0.5), inset 0px 1px 1px rgba(255,255,255,0.08)" }}
           >
+            {/* ── Progress Bar ─────────────────────────── */}
+            {step < 6 && (
+              <div className="absolute top-0 left-0 w-full h-[3px] bg-[rgba(255,255,255,0.1)] z-30">
+                <motion.div 
+                  className="h-full bg-white"
+                  initial={{ width: 0 }}
+                  animate={{ 
+                    width: `${((steps.findIndex(s => s.num === step) + 1) / steps.length) * 100}%` 
+                  }}
+                  transition={{ duration: 0.3, ease: EASE_OUT }}
+                />
+              </div>
+            )}
+
             {/* ── Header ─────────────────────────────── */}
-            <div className="px-5 pt-6 pb-4 shrink-0 bg-[#0d0d0d] z-20">
-              <div className="flex items-center justify-between mb-5">
+            <div className="px-5 pt-7 pb-4 shrink-0 bg-[#0d0d0d] z-20">
+              <div className="flex items-center justify-between mb-2">
                 {step < 6 ? (
                   <button
                     type="button"
@@ -240,35 +259,17 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 </button>
               </div>
 
-              {/* ── Stepper Breadcrumbs ────────────────── */}
+              {/* ── Stepper Title ──────────────────────── */}
               {step < 6 && (
-                <div className="flex items-center justify-center w-full mt-2">
-                  <div className="flex items-center gap-2 overflow-x-auto scrollbar-none max-w-full mask-edges px-2">
-                    {steps.map((s, i) => {
-                      const isCurrent = step === s.num;
-                      return (
-                        <div key={s.num} className="flex items-center gap-2 shrink-0">
-                          <div className="flex items-center gap-1.5">
-                            <div className="relative w-4 h-4 rounded-full border-[1.5px] border-[rgba(255,255,255,0.2)] flex items-center justify-center shrink-0">
-                              <div className={cn(
-                                "w-2 h-2 rounded-full bg-white transition-all duration-300",
-                                isCurrent ? "scale-100" : "scale-0"
-                              )} />
-                            </div>
-                            <span className={cn(
-                              "text-[14px] font-semibold tracking-[-0.02em] whitespace-nowrap transition-colors duration-300",
-                              isCurrent ? "text-white" : "text-[rgba(255,255,255,0.4)]"
-                            )}>
-                              {s.label}
-                            </span>
-                          </div>
-                          {i < steps.length - 1 && (
-                            <div className="text-[rgba(255,255,255,0.15)] text-[12px] mx-1 font-semibold tracking-[-0.05em]">→</div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
+                <div className="flex items-center justify-center w-full mt-1">
+                  <motion.div 
+                    key={step}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-[14px] font-semibold tracking-[-0.01em] text-[rgba(255,255,255,0.5)]"
+                  >
+                    Step {steps.findIndex(s => s.num === step) + 1} of {steps.length}: <span className="text-white ml-1">{steps.find(s => s.num === step)?.label}</span>
+                  </motion.div>
                 </div>
               )}
             </div>

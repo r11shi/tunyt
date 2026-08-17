@@ -97,9 +97,26 @@ export default function StepTicket({ bookingData, onClose }: StepTicketProps) {
           <div className="w-full border-t-[2px] border-dashed border-[#ddd] mx-4" />
         </div>
 
-        {/* Bottom Section - Barcode */}
-        <div className="p-6 bg-white flex flex-col items-center">
-          <p className="text-[11px] uppercase font-bold text-[#888] tracking-[0.05em] mb-3">Booking ID: NINE-8X29F</p>
+        {/* Bottom Section - Barcode & Price */}
+        <div className="p-6 bg-white flex flex-col">
+          <div className="flex flex-col gap-2 mb-6">
+            <div className="flex justify-between items-center text-[#666] text-[13px] font-medium tracking-[-0.01em]">
+              <span>Slot Cost</span>
+              <span>₹{((bookingData.price || 500) * (bookingData.players || 1)).toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between items-center text-[#666] text-[13px] font-medium tracking-[-0.01em]">
+              <span>Platform fee</span>
+              <span>₹38.46</span>
+            </div>
+            <div className="h-px bg-[#eee] my-1" />
+            <div className="flex justify-between items-center text-black text-[16px] font-bold tracking-[-0.02em]">
+              <span>Total Paid</span>
+              <span>₹{(((bookingData.price || 500) * (bookingData.players || 1)) + 38.46).toFixed(2)}</span>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <p className="text-[11px] uppercase font-bold text-[#888] tracking-[0.05em] mb-3">Booking ID: NINE-8X29F</p>
           <svg className="w-full h-[60px]" preserveAspectRatio="none" viewBox="0 0 200 60">
             <rect x="10" y="0" width="4" height="60" fill="black"/>
             <rect x="18" y="0" width="8" height="60" fill="black"/>
@@ -122,6 +139,7 @@ export default function StepTicket({ bookingData, onClose }: StepTicketProps) {
             <rect x="184" y="0" width="6" height="60" fill="black"/>
           </svg>
         </div>
+      </div>
       </div>
 
       <div className="w-full mt-10">

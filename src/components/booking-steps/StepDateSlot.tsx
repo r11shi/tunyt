@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ChevronUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -27,7 +27,7 @@ const DATES = [
 ];
 
 // Generate slots from 6 AM to 10 PM
-function generateSlots() {
+function generateSlots(duration: 30 | 60) {
   const slots = [];
   for (let hour = 6; hour <= 21; hour++) {
     const ampm = hour >= 12 ? "PM" : "AM";
@@ -35,13 +35,17 @@ function generateSlots() {
     
     // :00 slot
     slots.push(`${h12}:00 ${ampm}`);
+    
     // :30 slot
-    slots.push(`${h12}:30 ${ampm}`);
+    if (duration === 30) {
+      slots.push(`${h12}:30 ${ampm}`);
+    }
   }
-  slots.push(`10:00 PM`); // Final slot
+  if (duration === 30) {
+    slots.push(`10:00 PM`); // Final slot
+  }
   return slots;
 }
-const ALL_SLOTS = generateSlots();
 
 /* ── Labeled divider ────────────────────────────────────── */
 function Divider({ label }: { label: string }) {
@@ -77,9 +81,17 @@ export default function StepDateSlot({ onContinue }: StepDateSlotProps) {
   const [dateIdx, setDateIdx] = useState(0);
   const [slotIdx, setSlotIdx] = useState(0);
 
-  const price = dur === 30 ? 500 : 600;
+  const currentSlots = useMemo(() => generateSlots(dur), [dur]);
+  
+  useEffect(() => {
+    if (slotIdx >= currentSlots.length) {
+      setSlotIdx(0);
+    }
+  }, [dur, currentSlots.length, slotIdx]);
+
+  const price = dur === 30 ? 500 : 1000;
   const activeDate = DATES[dateIdx];
-  const selectedSlot = ALL_SLOTS[slotIdx];
+  const selectedSlot = currentSlots[slotIdx] || currentSlots[0];
 
   const handleContinue = () => {
     onContinue({
@@ -131,7 +143,7 @@ export default function StepDateSlot({ onContinue }: StepDateSlotProps) {
           <span className="text-[17px] font-medium tracking-[-0.03em]">60 Mins</span>
           <div className="flex items-center gap-2.5">
             <span className={cn("text-[15px] font-semibold tracking-[-0.02em]", dur === 60 ? "text-[#333]" : "text-[rgba(255,255,255,0.4)]")}>
-              ₹600
+              ₹1000
             </span>
             <Radio active={dur === 60} />
           </div>
@@ -174,11 +186,11 @@ export default function StepDateSlot({ onContinue }: StepDateSlotProps) {
       {/* ── Time slots grid ───────────────────────────── */}
       <div className="h-[240px] overflow-y-auto scrollbar-none -mx-2 px-2 pb-6 relative mask-bottom">
         <div className="grid grid-cols-3 gap-3">
-          {ALL_SLOTS.map((time, i) => {
+          {currentSlots.map((time, i) => {
             const sel = i === slotIdx;
             return (
               <button
-                key={i}
+                key={time}
                 type="button"
                 onClick={() => setSlotIdx(i)}
                 className={cn(

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { BookingData } from "../BookingModal";
 import { cn } from "@/lib/utils";
 
@@ -134,7 +135,7 @@ export default function StepPayment({ bookingData, onConfirm }: StepPaymentProps
                 aria-checked={isSplit}
                 onClick={() => setIsSplit(!isSplit)}
                 className={cn(
-                  "relative w-[48px] h-[28px] rounded-full transition-colors duration-300",
+                  "relative w-[48px] h-[28px] rounded-full transition-colors duration-300 shrink-0",
                   isSplit ? "bg-[#90de7f]" : "bg-[rgba(255,255,255,0.2)]"
                 )}
               >
@@ -144,6 +145,22 @@ export default function StepPayment({ bookingData, onConfirm }: StepPaymentProps
                 )} />
               </button>
             </div>
+            
+            {/* Split Payment Explanation */}
+            {isSplit && (
+              <motion.div 
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                className="mt-3 bg-[rgba(144,222,127,0.1)] border border-[rgba(144,222,127,0.2)] rounded-[16px] p-4 flex items-start gap-3"
+              >
+                <div className="w-5 h-5 shrink-0 rounded-full bg-[rgba(144,222,127,0.2)] flex items-center justify-center mt-0.5">
+                  <span className="text-[#90de7f] text-[12px] font-bold">i</span>
+                </div>
+                <p className="text-[13px] font-medium text-[rgba(255,255,255,0.7)] leading-[1.4]">
+                  You will pay your share of <span className="text-white font-semibold">₹{displayTotal.toFixed(2)}</span> now to secure the booking. A payment link will be sent via SMS/Email to the other {playersCount - 1} {playersCount - 1 === 1 ? "player" : "players"} for their share.
+                </p>
+              </motion.div>
+            )}
           </div>
         )}
       </div>
