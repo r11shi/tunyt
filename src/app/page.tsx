@@ -39,29 +39,27 @@ export default function VenuePage() {
           {/* ── LEFT: Scrollable Image Gallery (Mobile: full bleed, Desktop: sticky) ── */}
           <div className="w-full lg:w-[45%] xl:w-[48%] lg:sticky lg:top-10 shrink-0 relative group">
             {/* Desktop Overlay Controls (Like + Scroll) */}
-            <div className="hidden lg:flex absolute bottom-6 right-6 z-20 items-center bg-[rgba(15,15,15,0.7)] backdrop-blur-lg border border-[rgba(255,255,255,0.15)] rounded-full p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+            <div className="hidden lg:flex absolute bottom-6 right-6 z-20 items-center bg-transparent drop-shadow-md">
               <button 
                 onClick={() => setIsLiked(!isLiked)}
                 className="w-10 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-[rgba(255,255,255,0.1)] active:scale-95"
                 aria-label="Save venue"
               >
-                <Heart className={`w-5 h-5 transition-colors ${isLiked ? 'fill-[#ff4d4d] text-[#ff4d4d]' : 'text-white'}`} strokeWidth={isLiked ? 0 : 2} />
+                <Heart className={`w-6 h-6 transition-colors ${isLiked ? 'fill-[#ff4d4d] text-[#ff4d4d]' : 'text-white'}`} strokeWidth={isLiked ? 0 : 2} />
               </button>
               
-              <div className="w-px h-5 bg-[rgba(255,255,255,0.2)] mx-1" />
-              
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 ml-2">
                 <button 
                   onClick={() => scrollGallery('left')}
-                  className="w-10 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-[rgba(255,255,255,0.1)] text-white/80 hover:text-white active:scale-95"
+                  className="w-10 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-[rgba(255,255,255,0.1)] text-white/90 hover:text-white active:scale-95"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-7 h-7" />
                 </button>
                 <button 
                   onClick={() => scrollGallery('right')}
-                  className="w-10 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-[rgba(255,255,255,0.1)] text-white/80 hover:text-white active:scale-95"
+                  className="w-10 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-[rgba(255,255,255,0.1)] text-white/90 hover:text-white active:scale-95"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-7 h-7" />
                 </button>
               </div>
             </div>
@@ -109,8 +107,8 @@ export default function VenuePage() {
             </div>
 
             <div className="flex flex-col gap-4 w-full">
-              <ActivityCard />
               <VenueLocation />
+              <ActivityCard />
               
               {/* Desktop Booking Bar (Hidden on Mobile) */}
               <div className="hidden lg:block mt-4">
