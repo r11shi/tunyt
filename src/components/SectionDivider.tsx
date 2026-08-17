@@ -1,29 +1,25 @@
-import React from "react";
+import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 interface SectionDividerProps {
   label: string;
   className?: string;
-  labelClassName?: string;
 }
 
-export default function SectionDivider({
-  label,
-  className,
-  labelClassName,
-}: SectionDividerProps) {
+export default function SectionDivider({ label, className }: SectionDividerProps) {
   return (
-    <div className={cn("relative flex items-center justify-center my-6", className)}>
-      <div className="flex-1 h-[1px] bg-white/10" />
-      <span
-        className={cn(
-          "px-4 text-[15px] sm:text-[16px] font-medium text-white tracking-[-0.03em] whitespace-nowrap shrink-0",
-          labelClassName
-        )}
-      >
+    <div className={cn("flex items-center gap-4 my-4", className)}>
+      <div 
+        className="flex-1 h-[1px]" 
+        style={{ background: "linear-gradient(90deg, rgba(0, 0, 0, 0.50) 0%, rgba(255, 255, 255, 0.50) 48.08%, rgba(0, 0, 0, 0.50) 100%)" }}
+      />
+      <span className="text-[12px] font-medium text-[rgba(255,255,255,0.4)] tracking-[0.02em] uppercase">
         {label}
       </span>
-      <div className="flex-1 h-[1px] bg-white/10" />
+      <div 
+        className="flex-1 h-[1px]" 
+        style={{ background: "linear-gradient(90deg, rgba(0, 0, 0, 0.50) 0%, rgba(255, 255, 255, 0.50) 48.08%, rgba(0, 0, 0, 0.50) 100%)" }}
+      />
     </div>
   );
 }

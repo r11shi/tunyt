@@ -35,7 +35,7 @@ export default function ActivityCard() {
           <div className="relative flex items-center justify-center w-10 h-10 rounded-[12px] bg-[#2a2a2a] shrink-0 overflow-hidden border border-[rgba(255,255,255,0.05)]">
             <Image src="/assets/pool-ball-icon.png" alt="Pool billiards" fill sizes="40px" className="object-cover" />
           </div>
-          <p className="text-[18px] font-semibold tracking-[-0.04em] leading-none">
+          <p className="text-[16px] font-medium tracking-[-0.02em] leading-none">
             <span className="text-white">Pool Billards</span>
             <span className="text-[rgba(255,255,255,0.35)] font-medium ml-1.5">- Table 1</span>
           </p>
@@ -58,7 +58,7 @@ export default function ActivityCard() {
       </div>
 
       {/* ── Dynamic Content ───────────────────────────── */}
-      <div className="min-h-[120px] pt-2">
+      <div className="min-h-[100px] pt-2">
         {activeTab === "About" && (
           <p className="text-[rgba(255,255,255,0.5)] text-[15px] font-normal leading-relaxed tracking-[-0.02em] animate-in fade-in duration-300">
             Professional-quality pool table with a smooth playing surface, premium
@@ -69,7 +69,7 @@ export default function ActivityCard() {
 
         {activeTab === "Amenities" && (
           <div className="animate-in fade-in duration-300 pb-2">
-            <p className="text-white text-[16px] font-semibold tracking-[-0.03em] mb-3">Amenities</p>
+            <p className="text-white text-[15px] font-medium tracking-[-0.02em] mb-2.5">Amenities</p>
             <div className="flex flex-wrap gap-2">
               <AmenityBadge>Air Conditioned</AmenityBadge>
               <AmenityBadge>Cafeteria</AmenityBadge>
@@ -92,7 +92,7 @@ export default function ActivityCard() {
           <div className="animate-in fade-in duration-300">
             <div className="flex items-center gap-2 mb-3">
               <Star className="w-5 h-5 fill-[#f59e0b] text-[#f59e0b]" />
-              <span className="text-white font-bold text-[18px]">4.8</span>
+              <span className="text-white font-medium text-[18px]">4.8</span>
               <span className="text-[rgba(255,255,255,0.4)] text-[14px]">(124 Reviews)</span>
             </div>
             <div className="bg-[rgba(255,255,255,0.03)] rounded-[12px] p-3 border border-[rgba(255,255,255,0.05)]">

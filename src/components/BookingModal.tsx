@@ -227,7 +227,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
             )}
 
             {/* ── Header ─────────────────────────────── */}
-            <div className="px-5 pt-7 pb-4 shrink-0 bg-[#0d0d0d] z-20">
+            <div className="px-5 pt-5 pb-3 shrink-0 bg-[#0d0d0d] z-20">
               <div className="flex items-center justify-between mb-2">
                 {step < 6 ? (
                   <button
@@ -241,10 +241,10 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 ) : <div className="w-10 h-10" />}
 
                 <div className="flex items-center gap-2">
-                  <span className="text-white text-[18px] font-semibold tracking-[-0.03em] uppercase">
+                  <span className="text-white text-[18px] font-medium tracking-[-0.03em] uppercase">
                     TABLE 1
                   </span>
-                  <div className="px-2.5 py-1 rounded-full bg-[rgba(255,255,255,0.1)] text-[11px] font-bold tracking-[0.06em] uppercase text-white/70">
+                  <div className="px-2.5 py-1 rounded-full bg-[rgba(255,255,255,0.1)] text-[11px] font-medium tracking-[0.06em] uppercase text-white/70">
                     POOL BILLIARDS
                   </div>
                 </div>
@@ -266,7 +266,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     key={step}
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-[14px] font-semibold tracking-[-0.01em] text-[rgba(255,255,255,0.5)]"
+                    className="text-[14px] font-medium tracking-[-0.01em] text-[rgba(255,255,255,0.5)]"
                   >
                     Step {steps.findIndex(s => s.num === step) + 1} of {steps.length}: <span className="text-white ml-1">{steps.find(s => s.num === step)?.label}</span>
                   </motion.div>
@@ -278,7 +278,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
             <div className="h-px bg-[rgba(255,255,255,0.06)] w-full shrink-0" />
 
             {/* ── Step content ─────────────────────────── */}
-            <div className="px-5 pt-5 pb-6 sm:px-7 sm:pb-8 overflow-y-auto scrollbar-none flex flex-col">
+            <div className="px-5 pt-4 pb-5 sm:px-6 sm:pb-6 overflow-y-auto scrollbar-none flex flex-col">
               <AnimatePresence mode="popLayout" initial={false} custom={direction}>
                 {step === 1 && (
                   <motion.div

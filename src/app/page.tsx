@@ -33,8 +33,8 @@ export default function VenuePage() {
   return (
     <div className="min-h-screen bg-black text-white font-sans overflow-x-hidden relative pb-32 lg:pb-0">
       <Header />
-      <main className="max-w-[1440px] mx-auto lg:px-10 pb-20 pt-0 lg:pt-6">
-        <div className="flex flex-col lg:flex-row lg:gap-14 xl:gap-20 items-start justify-center">
+      <main className="max-w-[1280px] mx-auto lg:px-8 pb-12 pt-0 lg:pt-4">
+        <div className="flex flex-col lg:flex-row lg:gap-10 xl:gap-12 items-start justify-center">
           
           {/* ── LEFT: Scrollable Image Gallery (Mobile: full bleed, Desktop: sticky) ── */}
           <div className="w-full lg:w-[45%] xl:w-[48%] lg:sticky lg:top-10 shrink-0 relative group">
@@ -53,7 +53,7 @@ export default function VenuePage() {
             </button>
 
             {/* Horizontal Scroll Container */}
-            <div ref={scrollContainerRef} className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-2 px-4 sm:px-6 lg:px-0 lg:gap-4 h-[350px] sm:h-[450px] lg:h-[600px]">
+            <div ref={scrollContainerRef} className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-2 px-4 sm:px-6 lg:px-0 lg:gap-4 h-[280px] sm:h-[360px] lg:h-[480px]">
               {galleryImages.map((src, i) => (
                 <div 
                   key={i} 
@@ -73,9 +73,9 @@ export default function VenuePage() {
           </div>
 
           {/* ── RIGHT: Venue Info ───────────────────── */}
-          <div className="w-full lg:w-[55%] xl:w-[50%] flex flex-col pt-6 lg:pt-2 max-w-[700px] px-6 sm:px-10 lg:px-0">
-            <div className="flex items-start justify-between gap-4 mb-4 lg:mb-6">
-              <h1 className="text-white text-[32px] sm:text-[46px] lg:text-[54px] font-bold tracking-[-0.04em] leading-[1.1]">
+          <div className="w-full lg:w-[55%] xl:w-[50%] flex flex-col pt-4 lg:pt-2 max-w-[600px] px-5 sm:px-8 lg:px-0">
+            <div className="flex items-start justify-between gap-4 mb-3 lg:mb-4">
+              <h1 className="text-white text-[28px] sm:text-[36px] lg:text-[42px] font-medium tracking-[-0.03em] leading-[1.1]">
                 Nine Ball Cafe
               </h1>
               <button 
