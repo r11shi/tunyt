@@ -38,26 +38,40 @@ export default function VenuePage() {
           
           {/* ── LEFT: Scrollable Image Gallery (Mobile: full bleed, Desktop: sticky) ── */}
           <div className="w-full lg:w-[45%] xl:w-[48%] lg:sticky lg:top-10 shrink-0 relative group">
-            {/* Desktop Gallery Navigation */}
-            <button 
-              onClick={() => scrollGallery('left')}
-              className="hidden lg:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/10 items-center justify-center text-white/80 hover:text-white hover:bg-black/60 transition-all z-10 opacity-0 group-hover:opacity-100"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button 
-              onClick={() => scrollGallery('right')}
-              className="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/10 items-center justify-center text-white/80 hover:text-white hover:bg-black/60 transition-all z-10 opacity-0 group-hover:opacity-100"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+            {/* Desktop Overlay Controls (Like + Scroll) */}
+            <div className="hidden lg:flex absolute bottom-6 right-6 z-20 items-center bg-[rgba(15,15,15,0.7)] backdrop-blur-lg border border-[rgba(255,255,255,0.15)] rounded-full p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+              <button 
+                onClick={() => setIsLiked(!isLiked)}
+                className="w-10 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-[rgba(255,255,255,0.1)] active:scale-95"
+                aria-label="Save venue"
+              >
+                <Heart className={`w-5 h-5 transition-colors ${isLiked ? 'fill-[#ff4d4d] text-[#ff4d4d]' : 'text-white'}`} strokeWidth={isLiked ? 0 : 2} />
+              </button>
+              
+              <div className="w-px h-5 bg-[rgba(255,255,255,0.2)] mx-1" />
+              
+              <div className="flex items-center gap-1">
+                <button 
+                  onClick={() => scrollGallery('left')}
+                  className="w-10 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-[rgba(255,255,255,0.1)] text-white/80 hover:text-white active:scale-95"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button 
+                  onClick={() => scrollGallery('right')}
+                  className="w-10 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-[rgba(255,255,255,0.1)] text-white/80 hover:text-white active:scale-95"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
 
             {/* Horizontal Scroll Container */}
-            <div ref={scrollContainerRef} className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-2 px-4 sm:px-6 lg:px-0 lg:gap-4 h-[280px] sm:h-[360px] lg:h-[480px]">
+            <div ref={scrollContainerRef} className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-2 px-4 sm:px-6 lg:px-0 lg:gap-4 h-[280px] sm:h-[360px] lg:h-[620px]">
               {galleryImages.map((src, i) => (
                 <div 
                   key={i} 
-                  className="relative w-[85vw] sm:w-[60vw] lg:w-[85%] h-full shrink-0 snap-center rounded-[24px] lg:rounded-[var(--r-hero)] overflow-hidden border border-[rgba(255,255,255,0.1)] bg-[#111]"
+                  className="relative w-[85vw] sm:w-[60vw] lg:w-full h-full shrink-0 snap-center rounded-[24px] lg:rounded-[32px] overflow-hidden border border-[rgba(255,255,255,0.1)] bg-[#111]"
                 >
                   <Image
                     src={src}
@@ -78,9 +92,10 @@ export default function VenuePage() {
               <h1 className="text-white text-[28px] sm:text-[36px] lg:text-[42px] font-medium tracking-[-0.03em] leading-[1.1]">
                 Nine Ball Cafe
               </h1>
+              {/* Mobile Like Button (hidden on desktop since it's in the pill) */}
               <button 
                 onClick={() => setIsLiked(!isLiked)}
-                className="shrink-0 w-12 h-12 rounded-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center transition-colors hover:bg-[rgba(255,255,255,0.1)] active:scale-95 mt-1"
+                className="lg:hidden shrink-0 w-12 h-12 rounded-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center transition-colors hover:bg-[rgba(255,255,255,0.1)] active:scale-95 mt-1"
                 aria-label="Save venue"
               >
                 <Heart className={`w-5 h-5 transition-colors ${isLiked ? 'fill-[#ff4d4d] text-[#ff4d4d]' : 'text-white'}`} strokeWidth={isLiked ? 0 : 2} />
