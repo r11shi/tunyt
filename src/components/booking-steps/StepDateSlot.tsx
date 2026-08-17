@@ -24,6 +24,13 @@ const DATES = [
   { day: "SUN", date: "16", month: "Aug", full: "Sunday, 16 August 2026" },
   { day: "MON", date: "17", month: "Aug", full: "Monday, 17 August 2026" },
   { day: "TUE", date: "18", month: "Aug", full: "Tuesday, 18 August 2026" },
+  { day: "WED", date: "19", month: "Aug", full: "Wednesday, 19 August 2026" },
+  { day: "THU", date: "20", month: "Aug", full: "Thursday, 20 August 2026" },
+  { day: "FRI", date: "21", month: "Aug", full: "Friday, 21 August 2026" },
+  { day: "SAT", date: "22", month: "Aug", full: "Saturday, 22 August 2026" },
+  { day: "SUN", date: "23", month: "Aug", full: "Sunday, 23 August 2026" },
+  { day: "MON", date: "24", month: "Aug", full: "Monday, 24 August 2026" },
+  { day: "TUE", date: "25", month: "Aug", full: "Tuesday, 25 August 2026" },
 ];
 
 // Generate slots from 6 AM to 10 PM
@@ -47,30 +54,25 @@ function generateSlots(duration: 30 | 60) {
   return slots;
 }
 
-/* ── Labeled divider ────────────────────────────────────── */
-function Divider({ label }: { label: string }) {
-  return (
-    <div className="flex items-center gap-4 my-6">
-      <div className="flex-1 h-px bg-white/[0.04]" />
-      <span className="text-[13px] font-semibold text-[rgba(255,255,255,0.5)] tracking-[0.02em] uppercase">
-        {label}
-      </span>
-      <div className="flex-1 h-px bg-white/[0.04]" />
-    </div>
-  );
-}
+import SectionDivider from "../SectionDivider";
 
 /* ── Radio indicator ────────────────────────────────────── */
 function Radio({ active }: { active: boolean }) {
   return (
-    <div className={cn(
-      "w-5 h-5 rounded-full border-[1.5px] flex items-center justify-center transition-all duration-300",
-      active ? "border-black" : "border-[rgba(255,255,255,0.15)]"
-    )}>
-      <div className={cn(
-        "w-2.5 h-2.5 rounded-full bg-black transition-transform duration-300",
-        active ? "scale-100" : "scale-0"
-      )} />
+    <div
+      className={cn(
+        "w-5 h-5 rounded-full border-[1.5px] flex items-center justify-center shrink-0 transition-all duration-200",
+        active
+          ? "border-[#111] bg-transparent"
+          : "border-[rgba(255,255,255,0.2)] bg-transparent"
+      )}
+    >
+      <div
+        className={cn(
+          "w-2.5 h-2.5 rounded-full bg-[#111] transition-transform duration-200",
+          active ? "scale-100" : "scale-0"
+        )}
+      />
     </div>
   );
 }
@@ -106,7 +108,7 @@ export default function StepDateSlot({ onContinue }: StepDateSlotProps) {
   return (
     <div className="flex flex-col h-full flex-1">
       {/* ── Duration ──────────────────────────────────── */}
-      <Divider label="Duration" />
+      <SectionDivider label="Duration" />
 
       <div className="grid grid-cols-2 gap-3 sm:gap-3">
         {/* 30 Mins */}
@@ -114,15 +116,15 @@ export default function StepDateSlot({ onContinue }: StepDateSlotProps) {
           type="button"
           onClick={() => setDur(30)}
           className={cn(
-            "flex items-center justify-between px-4 sm:px-5 py-3.5 rounded-[20px] transition-colors duration-200 active:scale-[0.98]",
+            "flex items-center justify-between px-4 py-3 rounded-[16px] transition-colors duration-200 active:scale-[0.98]",
             dur === 30
               ? "bg-[#f0f0f0] text-black shadow-sm"
               : "bg-[rgba(255,255,255,0.03)] text-white hover:bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.05)]"
           )}
         >
-          <span className="text-[17px] font-medium tracking-[-0.03em]">30 Mins</span>
-          <div className="flex items-center gap-2.5">
-            <span className={cn("text-[15px] font-semibold tracking-[-0.02em]", dur === 30 ? "text-[#333]" : "text-[rgba(255,255,255,0.4)]")}>
+          <span className="text-[15px] font-medium tracking-[-0.02em]">30 Mins</span>
+          <div className="flex items-center gap-2">
+            <span className={cn("text-[14px] font-medium tracking-[-0.02em]", dur === 30 ? "text-[#333]" : "text-[rgba(255,255,255,0.4)]")}>
               ₹500
             </span>
             <Radio active={dur === 30} />
@@ -134,15 +136,15 @@ export default function StepDateSlot({ onContinue }: StepDateSlotProps) {
           type="button"
           onClick={() => setDur(60)}
           className={cn(
-            "flex items-center justify-between px-4 sm:px-5 py-3.5 rounded-[20px] transition-colors duration-200 active:scale-[0.98]",
+            "flex items-center justify-between px-4 py-3 rounded-[16px] transition-colors duration-200 active:scale-[0.98]",
             dur === 60
               ? "bg-[#f0f0f0] text-black shadow-sm"
               : "bg-[rgba(255,255,255,0.03)] text-white hover:bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.05)]"
           )}
         >
-          <span className="text-[17px] font-medium tracking-[-0.03em]">60 Mins</span>
-          <div className="flex items-center gap-2.5">
-            <span className={cn("text-[15px] font-semibold tracking-[-0.02em]", dur === 60 ? "text-[#333]" : "text-[rgba(255,255,255,0.4)]")}>
+          <span className="text-[15px] font-medium tracking-[-0.02em]">60 Mins</span>
+          <div className="flex items-center gap-2">
+            <span className={cn("text-[14px] font-medium tracking-[-0.02em]", dur === 60 ? "text-[#333]" : "text-[rgba(255,255,255,0.4)]")}>
               ₹1000
             </span>
             <Radio active={dur === 60} />
@@ -151,7 +153,7 @@ export default function StepDateSlot({ onContinue }: StepDateSlotProps) {
       </div>
 
       {/* ── Date cards ────────────────────────────────── */}
-      <div className="flex items-center gap-3 py-6 overflow-x-auto scrollbar-none -mx-2 px-2 mask-edges">
+      <div className="flex items-center gap-2.5 py-4 overflow-x-auto scrollbar-none -mx-2 px-2 mask-edges">
         {DATES.map((d, i) => {
           const sel = i === dateIdx;
           return (
@@ -160,19 +162,19 @@ export default function StepDateSlot({ onContinue }: StepDateSlotProps) {
               type="button"
               onClick={() => setDateIdx(i)}
               className={cn(
-                "flex flex-col items-center justify-between shrink-0 w-[72px] h-[108px] py-3 rounded-[20px] transition-all duration-200 active:scale-[0.96]",
+                "flex flex-col items-center justify-between shrink-0 w-[56px] h-[78px] py-2 rounded-[16px] transition-all duration-200 active:scale-[0.96]",
                 sel
                   ? "bg-[#f0f0f0] text-black shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                   : "bg-[rgba(255,255,255,0.04)] text-[rgba(255,255,255,0.4)] hover:bg-[rgba(255,255,255,0.08)] hover:text-white border border-[rgba(255,255,255,0.05)]"
               )}
             >
-              <span className={cn("text-[13px] font-semibold uppercase tracking-[0.04em]", sel ? "text-[#666]" : "")}>
+              <span className={cn("text-[11px] font-medium uppercase tracking-[0.04em]", sel ? "text-[#666]" : "")}>
                 {d.day}
               </span>
-              <span className="text-[34px] font-medium tracking-[-0.06em] leading-none">
+              <span className="text-[24px] font-medium tracking-[-0.04em] leading-none">
                 {d.date}
               </span>
-              <span className={cn("text-[13px] font-semibold tracking-[0.02em]", sel ? "text-[#666]" : "")}>
+              <span className={cn("text-[11px] font-medium tracking-[0.02em]", sel ? "text-[#666]" : "")}>
                 {d.month}
               </span>
             </button>
@@ -181,11 +183,11 @@ export default function StepDateSlot({ onContinue }: StepDateSlotProps) {
       </div>
 
       {/* ── Selected date label ───────────────────────── */}
-      <Divider label={activeDate.full} />
+      <SectionDivider label={activeDate.full} />
 
       {/* ── Time slots grid ───────────────────────────── */}
       <div className="h-[240px] overflow-y-auto scrollbar-none -mx-2 px-2 pb-6 relative mask-bottom">
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-2.5">
           {currentSlots.map((time, i) => {
             const sel = i === slotIdx;
             return (
@@ -194,7 +196,7 @@ export default function StepDateSlot({ onContinue }: StepDateSlotProps) {
                 type="button"
                 onClick={() => setSlotIdx(i)}
                 className={cn(
-                  "py-[16px] rounded-[18px] text-center text-[16px] font-medium tracking-[-0.02em] transition-colors duration-200 active:scale-[0.97] border",
+                  "py-[12px] rounded-[14px] text-center text-[15px] font-medium tracking-[-0.02em] transition-colors duration-200 active:scale-[0.97] border",
                   sel
                     ? "bg-[#f0f0f0] text-black border-[#f0f0f0] shadow-[0_0_15px_rgba(255,255,255,0.05)]"
                     : "bg-[rgba(255,255,255,0.03)] text-[rgba(255,255,255,0.7)] hover:bg-[rgba(255,255,255,0.08)] border-[rgba(255,255,255,0.05)] hover:text-white"
@@ -212,7 +214,7 @@ export default function StepDateSlot({ onContinue }: StepDateSlotProps) {
         <button
           type="button"
           onClick={handleContinue}
-          className="w-full bg-white text-black text-[18px] sm:text-[20px] font-semibold tracking-[-0.03em] rounded-full py-5 text-center transition-colors duration-200 hover:bg-[#e8e8e8] active:scale-[0.97] shadow-[0_4px_14px_0_rgba(255,255,255,0.15)] flex items-center justify-center gap-2"
+          className="w-full bg-white text-black text-[16px] sm:text-[18px] font-medium tracking-[-0.03em] rounded-full py-4 text-center transition-colors duration-200 hover:bg-[#e8e8e8] active:scale-[0.97] shadow-[0_4px_14px_0_rgba(255,255,255,0.15)] flex items-center justify-center gap-2"
         >
           <span>Continue with {dur} min</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
