@@ -15,7 +15,7 @@ function MetaItem({ icon, label }: MetaItemProps) {
       <div className="text-white/70">
         {icon}
       </div>
-      <span className="text-white/80 text-[14px] font-medium tracking-[-0.02em] whitespace-nowrap">
+      <span className="text-white/80 text-[13px] sm:text-[14px] font-medium tracking-[-0.02em] whitespace-nowrap">
         {label}
       </span>
     </div>
@@ -26,13 +26,13 @@ export default function ActivityCard() {
   const [activeTab, setActiveTab] = useState<"About" | "Amenities" | "Rules" | "Reviews">("About");
 
   return (
-    <div className="relative rounded-[var(--r-lg)] border border-[rgba(255,255,255,0.1)] bg-[#131313] overflow-hidden p-5"
+    <div className="relative rounded-[var(--r-lg)] border border-[rgba(255,255,255,0.1)] bg-[#131313] overflow-hidden p-4 sm:p-5"
       style={{ boxShadow: "inset 0px 2px 16px rgba(255,255,255,0.03)" }}
     >
       {/* ── Card Header ───────────────────────────── */}
       <div className="flex items-center justify-between pb-4">
         <div className="flex items-center gap-3">
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-[12px] bg-[#2a2a2a] shrink-0 overflow-hidden border border-[rgba(255,255,255,0.05)]">
+          <div className="relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-[12px] bg-[#2a2a2a] shrink-0 overflow-hidden border border-[rgba(255,255,255,0.05)]">
             <Image src="/assets/pool-ball-icon.png" alt="Pool billiards" fill sizes="40px" className="object-cover" />
           </div>
           <p className="text-[16px] font-medium tracking-[-0.02em] leading-none">
@@ -43,7 +43,7 @@ export default function ActivityCard() {
       </div>
 
       {/* ── Meta row ──────────────────────────────── */}
-      <div className="flex flex-wrap items-center gap-5 pb-4">
+      <div className="flex flex-wrap items-center gap-4 sm:gap-5 pb-4">
         <MetaItem icon={<Clock className="w-4 h-4" strokeWidth={2.5} />} label="30 Min/Slot" />
         <MetaItem icon={<IndianRupee className="w-4 h-4" strokeWidth={2.5} />} label="500/hr" />
         <MetaItem icon={<Users className="w-4 h-4" strokeWidth={2.5} />} label="1-2 People" />

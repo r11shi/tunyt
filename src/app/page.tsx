@@ -88,21 +88,21 @@ export default function VenuePage() {
 
           {/* ── RIGHT: Venue Info ───────────────────── */}
           <div className="w-full lg:w-[55%] xl:w-[50%] flex flex-col pt-4 lg:pt-2 max-w-[600px] px-5 sm:px-8 lg:px-0">
-            <div className="flex items-start justify-between gap-4 mb-3 lg:mb-4">
-              <h1 className="text-white text-[28px] sm:text-[36px] lg:text-[42px] font-medium tracking-[-0.03em] leading-[1.1]">
+            <div className="flex items-start justify-between gap-4 mb-2.5 lg:mb-4">
+              <h1 className="text-white text-[26px] sm:text-[36px] lg:text-[42px] font-medium tracking-[-0.03em] leading-[1.1]">
                 Nine Ball Cafe
               </h1>
               {/* Mobile Like Button (hidden on desktop since it's in the pill) */}
               <button 
                 onClick={() => setIsLiked(!isLiked)}
-                className="lg:hidden shrink-0 w-12 h-12 rounded-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center transition-colors hover:bg-[rgba(255,255,255,0.1)] active:scale-95 mt-1"
+                className="lg:hidden shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center transition-colors hover:bg-[rgba(255,255,255,0.1)] active:scale-95 mt-1"
                 aria-label="Save venue"
               >
                 <Heart className={`w-5 h-5 transition-colors ${isLiked ? 'fill-[#ff4d4d] text-[#ff4d4d]' : 'text-white'}`} strokeWidth={isLiked ? 0 : 2} />
               </button>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2 mb-8 lg:mb-9 scale-90 origin-left sm:scale-100">
+            <div className="flex flex-wrap items-center gap-2 mb-6 sm:mb-8 lg:mb-9 scale-[0.85] origin-left sm:scale-100">
               <Badge icon="/assets/icon-activity.svg" iconAlt="Activity count" label="1 Activity" />
               <Badge icon="/assets/icon-clock.svg" iconAlt="Price per hour" label="from 500/hr" />
               <Badge icon="/assets/icon-cash.svg" iconAlt="Payment method" label="Cash Accepted" variant="green" />
